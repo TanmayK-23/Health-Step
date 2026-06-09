@@ -34,14 +34,14 @@ public class InsightService {
 
         // Fetch data
         List<WaterLog> waterLogs = waterRepo.findByUserIdAndDate(userId, today);
-        int totalWater = waterLogs.stream().mapToInt(w -> w.getAmount() != null ? w.getAmount() : 0).sum();
+        int totalWater = waterLogs.stream().mapToInt(WaterLog::getAmount).sum();
 
         List<SleepLog> sleepLogs = sleepRepo.findByUserIdAndDate(userId, today);
-        int totalSleepMins = sleepLogs.stream().mapToInt(s -> s.getDuration() != null ? s.getDuration() : 0).sum();
+        int totalSleepMins = sleepLogs.stream().mapToInt(SleepLog::getDuration).sum();
         double sleepHours = totalSleepMins / 60.0;
 
         List<WorkoutLog> workoutLogs = workoutRepo.findByUserIdAndDate(userId, today);
-        int totalWorkoutMins = workoutLogs.stream().mapToInt(w -> w.getTime() != null ? w.getTime() : 0).sum();
+        int totalWorkoutMins = workoutLogs.stream().mapToInt(WorkoutLog::getTime).sum();
 
         List<NutritionLog> nutritionLogs = nutritionRepo.findByUserIdAndDate(userId, today);
         int totalKcal = nutritionLogs.stream().mapToInt(n -> n.getKcal() != null ? n.getKcal() : 0).sum();
