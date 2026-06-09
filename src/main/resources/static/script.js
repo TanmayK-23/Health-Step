@@ -494,6 +494,15 @@ async function syncFromBackend(){
       ));
     }
   }catch(_){ }
+
+  try {
+    const uid = getUserId(); if (!uid) return;
+    const insightData = await API.get(`/insights/${uid}`).catch(()=>null);
+    if (insightData && insightData.insight) {
+      const insightEl = document.getElementById('ai-insight-text');
+      if (insightEl) insightEl.textContent = insightData.insight;
+    }
+  }catch(_){}
 }
 
 /** === Live sync loop: keep UI updated across devices === */

@@ -84,9 +84,20 @@
     </div>
   
     <!-- New right-side Overview Panel -->
-    <div class="hero-media">
-      <div class="frame">
-        <aside class="overview-side">
+    <div class="hero-media" style="display:flex; flex-direction:column; gap:20px; align-items:center;">
+      <!-- AI Insight Card -->
+      <div class="ai-insight-card" style="width:100%; max-width:440px; background:linear-gradient(135deg, rgba(96,165,250,0.1), rgba(167,139,250,0.1)); border:1px solid rgba(255,255,255,0.2); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:24px;">✨</span>
+          <h3 style="margin:0; font-size:18px; color:#e5e7eb;">AI Health Coach</h3>
+        </div>
+        <p id="ai-insight-text" style="margin:0; font-size:15px; color:#cbd5e1; line-height:1.5;">
+          Loading your personalized insight...
+        </p>
+      </div>
+
+      <div class="frame" style="width:100%; max-width:440px;">
+        <aside class="overview-side" style="width:100%;">
           <a class="overview-panel" href="#water">
             <h3> Water</h3>
             <p id="ov-water">—</p>
