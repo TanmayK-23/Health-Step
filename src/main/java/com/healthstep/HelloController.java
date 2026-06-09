@@ -9,12 +9,6 @@ import java.util.Map;
 @RestController
 public class HelloController {
 
-    @GetMapping("/")
-    public Map<String, String> home() {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Welcome to HealthStep API 🌱");
-        return response;
-    }
 
     @GetMapping("/hello")
     public Map<String, String> hello() {
