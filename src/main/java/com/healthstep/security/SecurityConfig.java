@@ -61,6 +61,7 @@ public class SecurityConfig {
           .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()              // preflight
           .requestMatchers(HttpMethod.GET, "/sync/stream/**").permitAll()      // SSE stream; token validated in controller
           .requestMatchers("/auth/**").permitAll()                             // signup/login
+          .requestMatchers("/", "/index.html", "/style.css", "/script.js", "/*.png", "/*.ico").permitAll() // static frontend
           .anyRequest().authenticated()
       )
       .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
