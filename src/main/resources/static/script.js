@@ -2764,3 +2764,67 @@ async function loadChallenges() {
 document.addEventListener('DOMContentLoaded', () => {
   if (getUserId()) loadChallenges();
 });
+
+// ==== Wearables UI ====
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleApple = document.getElementById('toggle-apple-health');
+  const toggleGoogle = document.getElementById('toggle-google-fit');
+
+  // Handle toggles showing sync button
+  if (toggleApple) {
+    toggleApple.addEventListener('change', (e) => {
+      const card = e.target.closest('.wearable-card');
+      const btn = card.querySelector('.btn-sync-wearable');
+      btn.style.display = e.target.checked ? 'block' : 'none';
+      if (e.target.checked && toggleGoogle) {
+        toggleGoogle.checked = false; // mutually exclusive for demo
+        toggleGoogle.dispatchEvent(new Event('change'));
+      }
+    });
+  }
+
+  if (toggleGoogle) {
+    toggleGoogle.addEventListener('change', (e) => {
+      const card = e.target.closest('.wearable-card');
+      const btn = card.querySelector('.btn-sync-wearable');
+      btn.style.display = e.target.checked ? 'block' : 'none';
+      if (e.target.checked && toggleApple) {
+        toggleApple.checked = false; // mutually exclusive for demo
+        toggleApple.dispatchEvent(new Event('change'));
+      }
+    });
+  }
+
+  // Handle Sync Button Clicks
+  document.querySelectorAll('.btn-sync-wearable').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const uid = getUserId();
+      if (!uid) {
+        window.__HS_API_ERR__?.show('Please log in to sync wearable data.');
+        return;
+      }
+      
+      const source = e.target.getAttribute('data-source');
+      const originalText = e.target.innerText;
+      
+      // UI feedback
+      e.target.innerText = 'Syncing...';
+      e.target.disabled = true;
+
+      try {
+        await API.post(`/wearables/${uid}/sync?source=${source}`);
+        // The SSE SyncHub will automatically pick up the changes and update the UI
+        e.target.innerText = 'Synced Successfully!';
+        setTimeout(() => {
+          e.target.innerText = originalText;
+          e.target.disabled = false;
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // scroll up to see the magic
+        }, 2000);
+      } catch (err) {
+        window.__HS_API_ERR__?.show('Failed to sync wearable data.');
+        e.target.innerText = originalText;
+        e.target.disabled = false;
+      }
+    });
+  });
+});

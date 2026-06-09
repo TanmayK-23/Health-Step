@@ -336,6 +336,49 @@
     </div>
   </section>
 
+  <!-- Connected Wearables -->
+  <section id="wearables" class="hero">
+    <div class="hero-content" style="max-width:800px; margin:0 auto; text-align:center;">
+      <div class="hero-eyebrow">Integrations</div>
+      <h1 class="hero-title">Connected <span class="highlight">Apps</span></h1>
+      <p class="hero-subtitle">Sync your health data automatically from your devices.</p>
+      
+      <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:30px;">
+        <!-- Apple Health Card -->
+        <div class="wearable-card" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:24px; width:280px; text-align:left; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="font-size:28px;">🍎</span>
+              <h3 style="margin:0; font-size:18px; color:#e5e7eb;">Apple Health</h3>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-apple-health">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <p style="margin:0; font-size:14px; color:#9ca3af;">Sync workouts, sleep, and steps from your Apple Watch and iPhone.</p>
+          <button class="btn btn-sync-wearable" data-source="apple" style="display:none; width:100%;">Sync Data Now</button>
+        </div>
+
+        <!-- Google Fit Card -->
+        <div class="wearable-card" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:24px; width:280px; text-align:left; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="font-size:28px;">📊</span>
+              <h3 style="margin:0; font-size:18px; color:#e5e7eb;">Google Fit</h3>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-google-fit">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <p style="margin:0; font-size:14px; color:#9ca3af;">Sync activity and vitals from your Android phone or Wear OS device.</p>
+          <button class="btn btn-sync-wearable" data-source="google" style="display:none; width:100%;">Sync Data Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Leaderboard -->
   <section id="leaderboard" class="hero">
     <div class="hero-content">
